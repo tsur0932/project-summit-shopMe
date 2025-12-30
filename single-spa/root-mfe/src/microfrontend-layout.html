@@ -1,0 +1,45 @@
+<single-spa-router>
+  <!--
+    This is the single-spa Layout Definition for your E-commerce microfrontends.
+    See https://single-spa.js.org/docs/layout-definition/ for more information.
+  -->
+
+
+  <!-- Navigation bar - always visible -->
+  <nav>
+    <application name="@ecommerce/navbar"></application>
+  </nav>
+
+
+  <!-- Main content area with routing -->
+  <main class="main-content">
+    <!-- Default route - Products page -->
+    <route default>
+      <application name="@ecommerce/products"></application>
+    </route>
+
+
+    <!-- Products route -->
+    <route path="products">
+      <application name="@ecommerce/products"></application>
+    </route>
+
+
+    <!-- Shopping cart route -->
+    <route path="cart">
+      <application name="@ecommerce/cart"></application>
+    </route>
+
+
+    <!-- Product details route with dynamic ID -->
+    <route path="product/:id">
+      <application name="@ecommerce/product-details"></application>
+    </route>
+
+    <!-- Supplier dashboard route -->
+    <route path="supplier">
+      <application name="@ecommerce/supplier"></application>
+    </route>
+
+  </main>
+</single-spa-router>

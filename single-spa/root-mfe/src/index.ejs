@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>E-commerce Fruits & Vegetables</title>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/@babel/runtime/regenerator/index.js"></script>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';">
+  <meta name="importmap-type" content="systemjs-importmap" />
+ 
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js",
+        "react": "https://cdn.jsdelivr.net/npm/react@17/umd/react.production.min.js",
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@17/umd/react-dom.production.min.js",
+        "react-router-dom": "https://cdn.jsdelivr.net/npm/react-router-dom@5.3.0/umd/react-router-dom.min.js"
+      }
+    }
+  </script>
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js" as="script">
+
+
+  <!-- Add your organization's prod import map URL to this script's src  -->
+  <!-- <script type="systemjs-importmap" src="/importmap.json"></script> -->
+
+
+  <% if (isLocal) { %>
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "@ecommerce/root-config": "//localhost:9090/ecommerce-root-config.js",
+        "@ecommerce/navbar": "//localhost:8085/ecommerce-navbar.js",
+        "@ecommerce/products": "//localhost:8081/ecommerce-products.js",
+        "@ecommerce/cart": "//localhost:8082/ecommerce-cart.js",
+        "@ecommerce/product-details": "//localhost:8083/ecommerce-product-details.js",
+        "@ecommerce/supplier": "//localhost:8084/ecommerce-supplier.js",
+        "@ecommerce/admin": "//localhost:8086/ecommerce-admin.js"
+
+      }
+    }
+  </script>
+  <% } %>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
+  <% if (isLocal) { %>
+  <script src="https://cdn.jsdelivr.net/npm/@single-spa/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
+  <% } %>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
+
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: #f8f9fa;
+    }
+   
+    [id="single-spa-application:@ecommerce/navbar"] {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+   
+    .main-content {
+      min-height: calc(100vh - 80px);
+    }
+   
+    #main-container {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="single-spa-application:@ecommerce/navbar"></div>
+  <script>
+    System.import('@ecommerce/root-config');
+  </script>
+</body>
+</html>
